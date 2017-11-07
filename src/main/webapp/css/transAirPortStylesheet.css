@@ -1,0 +1,58 @@
+@font-face{
+    font-family: 'Dimis';
+    src: url('../fonts/dimis.ttf') format('truetype');
+}
+@font-face{
+    font-family: 'CaviarDreams';
+    src: url('../fonts/caviarDreamsBold.ttf') format('truetype');
+}
+
+#login{
+    position:fixed;
+    top: 10px;
+    right: 0px;
+    background-color: #19194d;
+    border-radius: 8px 0px 0px 8px;
+    font-family: CaviarDreams;
+    width: 210px;
+}
+#login td{
+    padding:2px 5px;
+    text-align: center;
+}
+#login button{
+    background-color: #003399;
+    border: none;
+    color: white;
+    padding: 3px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 2px;
+    min-width: 75px;
+}
+#login button:hover{
+    color: #19194d;
+    background-color: white;
+}
+#password, #username{
+    width: 97%;
+    padding: 5px 2px;
+    border: none;
+    border-radius: 2px;
+}
+#password:focus, #username:focus{
+    background-color: #adadad;
+}
+
+#lang{
+    position: fixed;
+    top: 3px;
+    right: 220px;
+}
+
+#langFr, #langEn{
+    width: 32px;
+}
