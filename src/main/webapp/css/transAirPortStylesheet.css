@@ -56,3 +56,73 @@
 #langFr, #langEn{
     width: 32px;
 }
+
+footer{
+    position: static;
+    height: 100px;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-top: 1px solid #003399;
+    bottom: 0px;
+}
+
+#menu{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+#menu ul{
+    max-height:0px;
+    left: 0px;
+    right: 0px;
+    overflow:hidden;
+    -moz-transition: .4s all .1s;
+    -webkit-transition: .4s all .1s;
+    transition: .4s all .1s;
+}
+#menu, #menu ul{
+    position:absolute;
+    padding:0px;
+    margin:0px;
+    list-style:none;/*???????????*/
+    text-align:center;
+}
+#menu li{
+    display:inline-block;
+    position:relative;
+    background-color: #003399;
+    background-image:-webkit-linear-gradient(top, #003399 0%, #19194d 100%);
+    background-image:linear-gradient(to bottom, #003399 0%, #19194d 100%);
+}
+#menu li li{
+    background:#19194d;
+}
+#menu li:hover, #menu li li:hover{
+    background:#003399;
+}
+#menu ul li{
+    display:inherit;
+}
+#menu li:hover ul{
+    max-height:500px;
+}
+#menu a{
+    text-decoration:none;
+    display:block;
+    padding:8px 40px;
+    color:#fff;
+    font-family:dimis;
+    font-size: 22px;
+    -webkit-transition-duration: 0.7s; /* Safari */
+    transition-duration: 0.7s;
+}
+#menu ul a{
+    padding:8px 0px;
+}
+#menu li:hover li a{
+    color:#fff;
+    text-transform:inherit;
+}
+#menu li:hover a, #menu li li:hover a{
+    color: #0099ff;
+}
