@@ -11,11 +11,11 @@ import java.util.List;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
-@Entity(name = "PERSISTABLE_USER")
+@Entity(name = "user")
 //@Table(name="user")
 public class UserEntity implements UserDetails {
     @Id
-    @Column(name = "userId")
+    @Column(name = "userid")
     private Integer userId;
 
     @Column(name = "username")
@@ -27,13 +27,13 @@ public class UserEntity implements UserDetails {
     @Column(name = "authorities")
     private String authorities;
 
-    @Column(name = "nonExpired")
+    @Column(name = "nonexpired")
     private Boolean accountNonExpired;
 
-    @Column(name = "nonLocked")
+    @Column(name = "nonlocked")
     private Boolean accountNonLocked;
 
-    @Column(name = "credentialNonExpired")
+    @Column(name = "credentialnonexpired")
     private Boolean credentialsNonExpired;
 
     @Column(name = "enabled")

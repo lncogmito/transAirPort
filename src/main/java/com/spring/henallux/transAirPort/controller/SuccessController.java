@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class SuccessController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Authentication authentication){
-        UserEntity userDetails = (UserEntity) authentication.getPrincipal();
-        System.out.println(userDetails.getUsername());
+    public String home(){
         return "integrated:success";
     }
 }
