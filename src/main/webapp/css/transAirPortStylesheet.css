@@ -7,11 +7,16 @@
     src: url('../fonts/caviarDreamsBold.ttf') format('truetype');
 }
 
+/*
+#a6a6a6 = gris
+#8c8c8c = +foncé
+*/
+
 #login{
     position:fixed;
     top: 10px;
     right: 0px;
-    background-color: #19194d;
+    background-color: #a6a6a6;
     border-radius: 8px 0px 0px 8px;
     font-family: CaviarDreams;
     width: 210px;
@@ -21,14 +26,14 @@
     text-align: center;
 }
 #login button{
-    background-color: #003399;
+    background-color: #8c8c8c;
     border: none;
     color: white;
     padding: 3px 5px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     border-radius: 2px;
     min-width: 75px;
@@ -84,21 +89,21 @@ footer{
     position:absolute;
     padding:0px;
     margin:0px;
-    list-style:none;/*???????????*/
+    list-style:none;
     text-align:center;
 }
 #menu li{
     display:inline-block;
     position:relative;
-    background-color: #003399;
-    background-image:-webkit-linear-gradient(top, #003399 0%, #19194d 100%);
-    background-image:linear-gradient(to bottom, #003399 0%, #19194d 100%);
+    background-color: #a6a6a6;
+    background-image:-webkit-linear-gradient(top, #a6a6a6 0%, #8c8c8c 100%);
+    background-image:linear-gradient(to bottom, #a6a6a6 0%, #8c8c8c 100%);
 }
 #menu li li{
-    background:#19194d;
+    background:#8c8c8c;
 }
 #menu li:hover, #menu li li:hover{
-    background:#003399;
+    background:#a6a6a6;
 }
 #menu ul li{
     display:inherit;
@@ -111,9 +116,9 @@ footer{
     display:block;
     padding:8px 40px;
     color:#fff;
-    font-family:dimis;
+    font-family:CaviarDreams;
     font-size: 22px;
-    -webkit-transition-duration: 0.7s; /* Safari */
+    -webkit-transition-duration: 0.7s;
     transition-duration: 0.7s;
 }
 #menu ul a{
@@ -124,5 +129,9 @@ footer{
     text-transform:inherit;
 }
 #menu li:hover a, #menu li li:hover a{
-    color: #0099ff;
+    color: #000000;
+}
+
+#mainPart{
+    margin-top:200px;
 }
