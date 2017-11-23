@@ -15,10 +15,10 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST = "/";
-    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/"};
+    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/home", "/css/*", "/fonts/*", "/js/*", "/images/*"};
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
 
-    private UserDetailsService userDetailsServiceImpl;
+    private UserDetailsService   userDetailsServiceImpl;
 
     @Autowired
     public WebSecurityConfiguration(UserDetailsService userDetailsServiceImpl) {
@@ -34,18 +34,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests() // We define the authorization here
-                .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ROLE_ADMIN") // For the request to "/admin", the user needs to be an admin
+                .antMatchers(AUTHORIZED_REQUESTS_ADMIN).hasRole("ADMIN") // For the request to "/admin", the user needs to be an admin
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll() // For the request to the index page, any user has access
                 .anyRequest().authenticated() // For all the other requests, the user needs to be authenticated
 
                 .and()
-                .formLogin() // We define the login part here.
+                .formLogin() // We define the login.jsp part here.
                 .successHandler(new SavedRequestAwareAuthenticationSuccessHandler()) // This handler is already provided by spring to redirect to the last request
-                .loginPage(LOGIN_REQUEST) // We specify a login page. Otherwise spring create one by default
-                .permitAll() // To make the login page the available for any user
+                //.loginPage(LOGIN_REQUEST) // We specify a login.jsp page. Otherwise spring create one by default
+                .permitAll() // To make the login.jsp page the available for any user
 
                 .and()
                 .logout() // We define the logout part here
+                .logoutSuccessUrl("/home")
                 .permitAll(); // To make the logout the available for any user
     }
 
