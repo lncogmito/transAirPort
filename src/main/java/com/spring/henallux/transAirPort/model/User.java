@@ -9,6 +9,10 @@ public class User {
     @NotEmpty
     private String username;
 
+    private String email;
+
+    //TODO: refaire cette class clean code bof.
+
     @Size(min= Constants.MIN_CHAR_PASSWORD)
     @NotEmpty
     private String password;

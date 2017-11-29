@@ -1,7 +1,0 @@
-server:
-  port: 8081
-  contextPath: /transAirPort
-spring:
-    datasource:
-      password: db204Pa$$
-      url: jdbc:mysql://localhost:3306/transairport?user=root
