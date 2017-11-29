@@ -13,9 +13,9 @@ public class ProviderConverter {
     public UserEntity userModeltoUserEntity(User user){
         return mapper.map(user,UserEntity.class);
     }
-
     public User userEntitytoUserModel(UserEntity userEntity){
         return mapper.map(userEntity, User.class);
     }
+
 
 }

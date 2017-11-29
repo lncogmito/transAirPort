@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
-@Entity(name = "user")
+@Entity(name = "USER")
 //@Table(name="user")
 public class UserEntity implements UserDetails {
     @Id
@@ -41,6 +41,13 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "enabled")
     private Boolean enabled;
+
+    @JoinColumn(name = "AddressId", referencedColumnName = "AddressId")
+    @ManyToOne
+    private AddressEntity address;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Collection<OrderEntity> orders;
 
 
     @Override
