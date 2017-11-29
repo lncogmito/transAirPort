@@ -21,7 +21,8 @@ public class ProductEntity {
     private CategoryEntity category;
 
     @OneToMany(mappedBy = "product")
-    private Collection<OrderLineEnity> orderLines;
+    private Collection<OrderLineEntity> orderLines;
 
-    //TODO Collection de ProductInfoEntity
+    @OneToMany(mappedBy = "product")
+    private Collection<ProductInfoEntity> productInfos;
 }

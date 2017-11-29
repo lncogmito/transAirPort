@@ -1,6 +1,7 @@
 package com.spring.henallux.transAirPort.dataAccess.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity(name = "ORDER")
 public class OrderEntity {
@@ -17,5 +18,6 @@ public class OrderEntity {
     @ManyToOne
     private AddressEntity deliveryAddress;
 
-    //TODO: Collection de OrderLineEntity
+    @OneToMany(mappedBy = "order")
+    private Collection<OrderLineEntity> orderLines;
 }

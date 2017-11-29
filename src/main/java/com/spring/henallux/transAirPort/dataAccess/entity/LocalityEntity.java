@@ -3,7 +3,8 @@ package com.spring.henallux.transAirPort.dataAccess.entity;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity(name = "LOCALITY")
+@Entity
+@Table(name = "LOCALITY")
 public class LocalityEntity {
 
     @Id
@@ -15,6 +16,9 @@ public class LocalityEntity {
 
     @Column(name = "PostalCode")
     private int postalCode;
+
+    @Column(name = "Country")
+    private String country;
 
     @OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)
     private Collection<AddressEntity> addressEntities;

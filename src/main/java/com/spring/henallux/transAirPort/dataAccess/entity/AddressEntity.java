@@ -3,7 +3,8 @@ package com.spring.henallux.transAirPort.dataAccess.entity;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity(name = "ADDRESS")
+@Entity
+@Table(name = "ADDRESS")
 public class AddressEntity {
 
     @Id

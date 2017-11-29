@@ -24,6 +24,8 @@ public class User {
     private Boolean credentialsNonExpired;
     private Boolean enabled;
 
+    private Address address;
+
     public User(){}
 
     public String getUsername(){
@@ -39,7 +41,7 @@ public class User {
         password = newPassword;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 

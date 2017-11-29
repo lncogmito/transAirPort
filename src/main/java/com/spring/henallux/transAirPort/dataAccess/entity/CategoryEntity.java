@@ -17,7 +17,9 @@ public class CategoryEntity {
     @OneToMany(mappedBy = "categoryParent", fetch = FetchType.LAZY)
     private Collection<CategoryEntity> childCategories;
 
-    //TODO Collection de ProductEntity
+    @OneToMany(mappedBy = "category")
+    private Collection<ProductEntity> products;
 
-    //TODO Collection de CategoryInfoEntity
+    @OneToMany(mappedBy = "category")
+    private Collection<CategoryInfoEntity> categoryInfos;
 }

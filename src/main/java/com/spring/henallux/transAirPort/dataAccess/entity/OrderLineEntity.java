@@ -3,11 +3,14 @@ package com.spring.henallux.transAirPort.dataAccess.entity;
 import javax.persistence.*;
 
 @Entity(name = "ORDER_LINE")
-public class OrderLineEnity {
+public class OrderLineEntity {
 
     @Id
     @Column(name = "OrderLineId")
     private long id;
+
+    @Column(name = "LineNumber")
+    private int lineNumber;
 
     @Column(name = "Price")
     private double price;

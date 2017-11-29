@@ -16,15 +16,15 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class UserEntity implements UserDetails {
     @Id
     @Column(name = "userid")
-    private Integer userId;
+    private long userId;
 
-    @Column(name = "username")
+    @Column(name = "Username")
     private String username;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "Password")
     private String password;
 
     @Column(name = "authorities")
