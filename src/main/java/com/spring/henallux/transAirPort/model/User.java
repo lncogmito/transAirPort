@@ -9,6 +9,10 @@ public class User {
     @NotEmpty
     private String username;
 
+    private String email;
+
+    //TODO: refaire cette class clean code bof.
+
     @Size(min= Constants.MIN_CHAR_PASSWORD)
     @NotEmpty
     private String password;
@@ -19,6 +23,8 @@ public class User {
     private Boolean accountNonLocked;
     private Boolean credentialsNonExpired;
     private Boolean enabled;
+
+    private Address address;
 
     public User(){}
 
@@ -35,7 +41,7 @@ public class User {
         password = newPassword;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
