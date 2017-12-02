@@ -7,10 +7,10 @@ import java.util.Collection;
 public class CategoryEntity {
 
     @Id
-    @Column(name = "CodeCategory")
+    @Column(name = "codecategory")
     private long code;
 
-    @JoinColumn(name = "CodeCategoryParent", referencedColumnName = "CodeCategory")
+    @JoinColumn(name = "codecategoryparent", referencedColumnName = "codecategory")
     @ManyToOne
     private CategoryEntity categoryParent;
 

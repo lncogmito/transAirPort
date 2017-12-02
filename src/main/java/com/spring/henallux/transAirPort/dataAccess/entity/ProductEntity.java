@@ -7,16 +7,16 @@ import java.util.Collection;
 public class ProductEntity {
 
     @Id
-    @Column(name = "ProductId")
+    @Column(name = "productid")
     private long id;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private double price;
 
     @Column(name = "VAT")
     private double vat;
 
-    @JoinColumn(name = "CodeCategory", referencedColumnName = "CodeCategory")
+    @JoinColumn(name = "codecategory", referencedColumnName = "codecategory")
     @ManyToOne
     private CategoryEntity category;
 

@@ -8,19 +8,19 @@ import java.util.Collection;
 public class AddressEntity {
 
     @Id
-    @Column(name = "AddressId")
+    @Column(name = "addressid")
     private long id;
 
-    @Column(name = "Street")
+    @Column(name = "street")
     private String street;
 
-    @Column(name = "HouseNumber")
+    @Column(name = "housenumber")
     private String houseNumber;
 
-    @Column(name = "BoxNumber")
+    @Column(name = "boxnumber")
     private String boxNumber;
 
-    @JoinColumn(name = "LocalityId", referencedColumnName = "LocalityId")
+    @JoinColumn(name = "localityid", referencedColumnName = "localityid")
     @ManyToOne
     private LocalityEntity locality;
 

@@ -6,20 +6,20 @@ import javax.persistence.*;
 public class ProductInfoEntity {
 
     @Id
-    @Column(name = "ProductInfoId")
+    @Column(name = "productinfoid")
     private long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
-    @JoinColumn(name = "ProductId", referencedColumnName = "ProductId")
+    @JoinColumn(name = "productid", referencedColumnName = "productid")
     @ManyToOne
     private ProductEntity product;
 
-    @JoinColumn(name = "CodeLanguage", referencedColumnName = "CodeLanguage")
+    @JoinColumn(name = "codelanguage", referencedColumnName = "codelanguage")
     @ManyToOne
     private LanguageEntity language;
 }

@@ -10,10 +10,10 @@ import java.util.Collection;
 public class LanguageEntity {
 
     @Id
-    @Column(name = "CodeLanguage")
+    @Column(name = "codelanguage")
     private long code;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "language")

@@ -6,23 +6,23 @@ import javax.persistence.*;
 public class OrderLineEntity {
 
     @Id
-    @Column(name = "OrderLineId")
+    @Column(name = "orderlineid")
     private long id;
 
-    @Column(name = "LineNumber")
+    @Column(name = "linenumber")
     private int lineNumber;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private double price;
 
-    @Column(name = "Quantity")
+    @Column(name = "quantity")
     private int quantity;
 
-    @JoinColumn(name = "OrderId", referencedColumnName = "OrderId")
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid")
     @ManyToOne
     private OrderEntity order;
 
-    @JoinColumn(name = "ProductId", referencedColumnName = "ProductId")
+    @JoinColumn(name = "productid", referencedColumnName = "productid")
     @ManyToOne
     private ProductEntity product;
 }

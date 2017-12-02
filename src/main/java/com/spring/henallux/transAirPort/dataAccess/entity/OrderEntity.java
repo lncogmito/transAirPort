@@ -7,14 +7,14 @@ import java.util.Collection;
 public class OrderEntity {
 
     @Id
-    @Column(name = "OrderId")
+    @Column(name = "orderid")
     private long id;
 
-    @JoinColumn(name = "UserId", referencedColumnName = "UserId")
+    @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
     private UserEntity user;
 
-    @JoinColumn(name = "AddressId", referencedColumnName = "AddressId")
+    @JoinColumn(name = "addressid", referencedColumnName = "addressid")
     @ManyToOne
     private AddressEntity deliveryAddress;
 

@@ -39,7 +39,7 @@ public class UserEntity implements UserDetails {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @JoinColumn(name = "AddressId", referencedColumnName = "AddressId")
+    @JoinColumn(name = "addressid", referencedColumnName = "addressid")
     @ManyToOne
     private AddressEntity address;
 

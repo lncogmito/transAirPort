@@ -6,18 +6,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class User {
+    //TODO: refaire cette class clean code bof. +1
+
     @NotEmpty
     private String username;
 
     private String email;
 
-    //TODO: refaire cette class clean code bof.
-
     @Size(min= Constants.MIN_CHAR_PASSWORD)
     @NotEmpty
     private String password;
 
-    private Integer userId;
     private String authorities;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
@@ -41,13 +40,6 @@ public class User {
         password = newPassword;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getAuthorities() {
         return authorities;

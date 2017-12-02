@@ -6,17 +6,17 @@ import javax.persistence.*;
 public class CategoryInfoEntity {
 
     @Id
-    @Column(name = "CategoryInfoId")
+    @Column(name = "categoryinfoid")
     private long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @JoinColumn(name = "CodeCategory", referencedColumnName = "CodeCategory")
+    @JoinColumn(name = "codecategory", referencedColumnName = "codecategory")
     @ManyToOne
     private CategoryEntity category;
 
-    @JoinColumn(name = "CodeLanguage", referencedColumnName = "CodeLanguage")
+    @JoinColumn(name = "codelanguage", referencedColumnName = "codelanguage")
     @ManyToOne
     private LanguageEntity language;
 }

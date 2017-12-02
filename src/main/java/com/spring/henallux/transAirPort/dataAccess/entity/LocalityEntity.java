@@ -8,16 +8,16 @@ import java.util.Collection;
 public class LocalityEntity {
 
     @Id
-    @Column(name = "LocalityId")
+    @Column(name = "localityid")
     private long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "PostalCode")
+    @Column(name = "postalcode")
     private int postalCode;
 
-    @Column(name = "Country")
+    @Column(name = "country")
     private String country;
 
     @OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)
