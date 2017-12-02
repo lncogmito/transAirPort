@@ -15,9 +15,6 @@ import static org.springframework.util.StringUtils.isEmpty;
 //@Table(name="user")
 public class UserEntity implements UserDetails {
     @Id
-    @Column(name = "userid")
-    private Integer userId;
-
     @Column(name = "username")
     private String username;
 

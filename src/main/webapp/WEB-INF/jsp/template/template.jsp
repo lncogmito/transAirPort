@@ -7,6 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link type="text/css" href="<spring:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
     <link type="text/css" href="<spring:url value="/css/transAirPortStylesheet.css"/>" rel="stylesheet">
+    <title>
+        ${title}
+    </title>
+
 
     <spring:url var="localeFr" value="">
         <spring:param name="locale" value="fr"/>
@@ -25,12 +29,13 @@
                 <li><a href="#">lien sous menu 3</a></li>
                 <li><a href="#">lien sous menu 3</a></li>
             </ul>
-        </li><li><a href="#">Lien menu 4</a>
+        </li><li><a href="#">Catégories</a>
             <ul>
-                <li><a href="#">Lien sous menu 4</a></li>
-                <li><a href="#">Lien sous menu 4</a></li>
-                <li><a href="#">Lien sous menu 4</a></li>
-                <li><a href="#">Lien sous menu 4</a></li>
+                <!--  !!!!! A select depuis la base de données !!!! -->
+                <li><a href="#">Hélicoptères Civils</a></li>
+                <li><a href="#">Avions de ligne</a></li>
+                <li><a href="#">Avions Cargo</a></li>
+                <li><a href="#">Avions militaires</a></li>
             </ul>
         </li>
     </ul>
