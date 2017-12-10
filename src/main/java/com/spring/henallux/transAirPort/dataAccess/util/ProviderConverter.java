@@ -20,16 +20,16 @@ public class ProviderConverter {
     public CategoryEntity categoryModelToCategoryEntity(Category category){
         return mapper.map(category, CategoryEntity.class);
     }
-    public Category categoryModelToCategoryEntity(CategoryEntity categoryEntity){
-        return mapper.map(categoryEntity, Category.class);
+    public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity){
+        return mapper.map(categoryEntity,Category.class);
     }
-
     public CategoryInfoEntity categoryInfoModelToCategoryInfoEntity(CategoryInfo categoryInfo){
         return mapper.map(categoryInfo, CategoryInfoEntity.class);
     }
     public CategoryInfo categoryInfoEntityToCategoryInfoModel(CategoryInfoEntity categoryInfoEntity){
         return mapper.map(categoryInfoEntity, CategoryInfo.class);
     }
+
 
     public LanguageEntity languageModelToLanguageEntity(Language language){
         return mapper.map(language, LanguageEntity.class);

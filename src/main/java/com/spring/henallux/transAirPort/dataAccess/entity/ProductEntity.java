@@ -25,4 +25,52 @@ public class ProductEntity {
 
     @OneToMany(mappedBy = "product")
     private Collection<ProductInfoEntity> productInfos;
+
+    public long getId() {
+        return id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getVat() {
+        return vat;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public Collection<OrderLineEntity> getOrderLines() {
+        return orderLines;
+    }
+
+    public Collection<ProductInfoEntity> getProductInfos() {
+        return productInfos;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setVat(double vat) {
+        this.vat = vat;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
+    public void setOrderLines(Collection<OrderLineEntity> orderLines) {
+        this.orderLines = orderLines;
+    }
+
+    public void setProductInfos(Collection<ProductInfoEntity> productInfos) {
+        this.productInfos = productInfos;
+    }
 }

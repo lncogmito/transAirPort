@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_REQUEST = "/";
-    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/home", "/css/*", "/fonts/*", "/js/*", "/images/*"};
+    private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/home", "/css/*", "/fonts/*", "/js/*", "/images/*", "/category", "/categoryItems", "/productDetails"};
     private static final String[] AUTHORIZED_REQUESTS_ADMIN = new String[]{"/admin"};
 
     private UserDetailsService   userDetailsServiceImpl;

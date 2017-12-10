@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping(value="success")
-@SessionAttributes({Constants.CURRENT_USER})
 public class SuccessController {
 
     @RequestMapping(method = RequestMethod.GET)

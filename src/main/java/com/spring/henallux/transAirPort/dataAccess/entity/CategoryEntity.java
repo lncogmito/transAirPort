@@ -22,4 +22,14 @@ public class CategoryEntity {
 
     @OneToMany(mappedBy = "category")
     private Collection<CategoryInfoEntity> categoryInfos;
+
+    public long getCode() {
+        return code;
+    }
+    public CategoryEntity getCategoryParent() {
+        return categoryParent;
+    }
+    public Collection<CategoryEntity> getChildCategories() {
+        return childCategories;
+    }
 }

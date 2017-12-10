@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<LanguageEntity, Long> {
+    LanguageEntity findByName(String name);
 }

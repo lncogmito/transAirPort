@@ -5,17 +5,17 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="text/css" href="<spring:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
     <link type="text/css" href="<spring:url value="/css/transAirPortStylesheet.css"/>" rel="stylesheet">
+    <link type="text/css" href="<spring:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
     <title>
         ${title}
     </title>
 
 
-    <spring:url var="localeFr" value="">
+    <spring:url var="localeFr" value="?${pageContext.request.queryString}">
         <spring:param name="locale" value="fr"/>
     </spring:url>
-    <spring:url var="localeEn" value="">
+    <spring:url var="localeEn" value="?${pageContext.request.queryString}">
         <spring:param name="locale" value="en"/>
     </spring:url>
 </head>
@@ -31,11 +31,9 @@
             </ul>
         </li><li><a href="#">Catégories</a>
             <ul>
-                <!--  !!!!! A select depuis la base de données !!!! -->
-                <li><a href="#">Hélicoptères Civils</a></li>
-                <li><a href="#">Avions de ligne</a></li>
-                <li><a href="#">Avions Cargo</a></li>
-                <li><a href="#">Avions militaires</a></li>
+                <c:forEach var="category" items="${categories}">
+                    <li><a href="/transAirPort/category?type=${category.getCategory().getCode()}">${category.getName()}</a></li>
+                </c:forEach>
             </ul>
         </li>
     </ul>

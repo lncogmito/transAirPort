@@ -17,8 +17,13 @@ public class LanguageEntity {
     private String name;
 
     @OneToMany(mappedBy = "language")
-    private Collection<CategoryInfoEntity> categoryInfos;
-
-    @OneToMany(mappedBy = "language")
     private Collection<ProductInfoEntity> productInfos;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

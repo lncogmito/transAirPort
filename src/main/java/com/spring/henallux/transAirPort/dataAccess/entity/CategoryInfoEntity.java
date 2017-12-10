@@ -19,4 +19,36 @@ public class CategoryInfoEntity {
     @JoinColumn(name = "codelanguage", referencedColumnName = "codelanguage")
     @ManyToOne
     private LanguageEntity language;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
+    public LanguageEntity getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(LanguageEntity language) {
+        this.language = language;
+    }
 }

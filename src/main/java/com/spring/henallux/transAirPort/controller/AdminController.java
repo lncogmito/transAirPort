@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model){
-        model.addAttribute("user", new UserEntity());
+    public String home(){
         return "integrated:admin";
     }
 }

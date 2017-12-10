@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="./include/importTags.jsp"%>
 <div id="productDetailsHeader">
     <h1>NOM PRODUIT</h1>
 </div>
@@ -9,7 +9,7 @@
     <table id="productDetailsBasketTable"><form:form id="productDetailsBasketForm"
                                  method="post"
                                  action="/transAirPort/"
-                                 modelAttribute="basket"
+                                 modelAttribute="current_basket"
     >
         <tr>
             <td></td>
