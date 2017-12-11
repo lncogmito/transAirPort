@@ -9,20 +9,25 @@
         %>
         <c:forEach var="productItem" items="${productList}">
             <td class="productItem">
-                <table class="productItemTable">
-                    <tr><td colspan="2">${productItem.getName()}</td></tr>
-                    <tr><td colspan="2"><img class="productImage" src="<spring:url value='/images/products/${productItem.getProduct().getId()}.png'/>"/></td> </tr>
-                    <tr>
-                        <form:form id="productItemBasketForm"
-                        method="post"
-                        action="/transAirPort/categoryItems/send"
-                        modelAttribute="current_basket">
+                <form:form id="productItemBasketForm"
+                           method="post"
+                           action="/transAirPort/categoryItems/addItemToBasket"
+                           modelAttribute="orderLine">
+                    <form:hidden path="product" value="${productItem.getProduct()}"/>
 
-                        </form:form>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+                    <table class="productItemTable">
+                        <tr><td colspan="2">${productItem.getName()}</td></tr>
+                        <tr><td colspan="2"><img class="img-responsive" src="<spring:url value='/images/${productItem.getProduct().getId()}.jpg'/>"/></td> </tr>
+                        <tr>
+                            <td>
+                                <form:input path="quantity" type="number"/>
+                            </td>
+                            <td>
+                                <form:button class="btn btn-secondary btn-sm"><spring:message code="buttonValidate"/></form:button>
+                            </td>
+                        </tr>
+                    </table>
+                </form:form>
             </td>
 
             <%

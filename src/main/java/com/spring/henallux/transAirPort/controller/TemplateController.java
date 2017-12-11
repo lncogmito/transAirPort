@@ -25,6 +25,6 @@ public class TemplateController {
     public void loadCategories(Model model, Locale locale){
         ArrayList<CategoryInfo> categories = categoryInfoDAO.findModelListByCodeCategoryParentIsNull(locale.getLanguage());
         model.addAttribute("categories",categories);
-
+        model.addAttribute("nbItemInBasket",ToolKit.nbLines);
     }
 }

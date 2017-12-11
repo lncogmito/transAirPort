@@ -1,7 +1,6 @@
 package com.spring.henallux.transAirPort.controller;
 
 import com.spring.henallux.transAirPort.dataAccess.entity.OrderEntity;
-import com.spring.henallux.transAirPort.dataAccess.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping(value="/productDetails")
-@SessionAttributes({Constants.BASKET})
+@SessionAttributes({ToolKit.BASKET})
 public class ProductDetailsController {
     private final MessageSource messageSource;
 
@@ -25,7 +24,7 @@ public class ProductDetailsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, Locale locale){
-        model.addAttribute(Constants.BASKET,new OrderEntity());
+        model.addAttribute(ToolKit.BASKET,new OrderEntity());
         model.addAttribute("title", messageSource.getMessage("titleProductDetails",null,locale));
         return "integrated:productDetails";
     }

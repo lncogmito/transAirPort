@@ -149,3 +149,7 @@ footer{
     height: 200px;
     border: 1px solid black;
 }
+
+.productItem img{
+    min-height: 100px;
+}

@@ -1,6 +1,6 @@
 package com.spring.henallux.transAirPort.model;
 
-import com.spring.henallux.transAirPort.controller.Constants;
+import com.spring.henallux.transAirPort.controller.ToolKit;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ public class User {
 
     private String email;
 
-    @Size(min= Constants.MIN_CHAR_PASSWORD)
+    @Size(min= ToolKit.MIN_CHAR_PASSWORD)
     @NotEmpty
     private String password;
 

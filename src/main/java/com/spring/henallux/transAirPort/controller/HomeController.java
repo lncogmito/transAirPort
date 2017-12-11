@@ -1,8 +1,7 @@
 package com.spring.henallux.transAirPort.controller;
 
-import com.spring.henallux.transAirPort.dataAccess.dao.CategoryDAO;
-import com.spring.henallux.transAirPort.model.Category;
 import com.spring.henallux.transAirPort.model.Order;
+import com.spring.henallux.transAirPort.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -12,18 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 
 @Controller
 @RequestMapping(value="/home")
-@SessionAttributes({Constants.BASKET})
+@SessionAttributes({ToolKit.BASKET})
 public class HomeController {
     private final MessageSource messageSource;
 
-    @ModelAttribute(Constants.BASKET)
-    public Order getCurrentOrder(){
-        return new Order();
+    @ModelAttribute(ToolKit.BASKET)
+    public LinkedHashMap<Integer,OrderLine> getCurrentOrder(){
+        return new LinkedHashMap<>();
     }
 
     @Autowired
@@ -32,7 +32,7 @@ public class HomeController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, Locale locale,@ModelAttribute(value = Constants.BASKET) Order currentBasket){
+    public String home(Model model, Locale locale){
         model.addAttribute("title", messageSource.getMessage("titleHome",null,locale));
         return "integrated:home";
     }

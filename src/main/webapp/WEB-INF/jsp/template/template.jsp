@@ -25,17 +25,19 @@
         <li><a href="#">Menu</a>
             <ul>
                 <li><a href="/transAirPort/normal">Normal page</a></li>
-                <li><a href="/transAirPort/admin">Admin page</a></li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li><a href="/transAirPort/addCategory"><spring:message code="menuAddCategory"/></a></li>
+                </sec:authorize>
                 <li><a href="#">lien sous menu 3</a></li>
                 <li><a href="#">lien sous menu 3</a></li>
             </ul>
-        </li><li><a href="#">Catégories</a>
+        </li><li><a href="#"><spring:message code="menuCategories"/></a>
             <ul>
                 <c:forEach var="category" items="${categories}">
                     <li><a href="/transAirPort/category?type=${category.getCategory().getCode()}">${category.getName()}</a></li>
                 </c:forEach>
             </ul>
-        </li>
+        </li><li><a href="/transAirPort/basket"><spring:message code="menuBasket"/> (${nbItemInBasket})</a></li>
     </ul>
 
 
@@ -47,7 +49,6 @@
     <sec:authorize access="!isAuthenticated()">
         <table id="login">
             <tr>
-                <!-- $ {requestScope['javax.servlet.forward.request_uri']}-->
                 <td><a href="/transAirPort/normal"><button><spring:message code="buttonLogIn"/></button></td>
                 <td><a href="/transAirPort/signIn"><button><spring:message code="buttonSignIn"/></button></a></td>
             </tr>
