@@ -13,7 +13,7 @@
                            method="post"
                            action="/transAirPort/categoryItems/addItemToBasket"
                            modelAttribute="orderLine">
-                    <form:hidden path="product" value="${productItem.getProduct()}"/>
+                    <form:hidden path="product" value="${productItem.Product.id}"/>
 
                     <table class="productItemTable">
                         <tr><td colspan="2">${productItem.getName()}</td></tr>
