@@ -2,6 +2,7 @@ package com.spring.henallux.transAirPort.controller;
 
 import com.spring.henallux.transAirPort.dataAccess.dao.CategoryInfoDAO;
 import com.spring.henallux.transAirPort.dataAccess.dao.ProductInfoDAO;
+import com.spring.henallux.transAirPort.model.FormQuantity;
 import com.spring.henallux.transAirPort.model.Order;
 import com.spring.henallux.transAirPort.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,18 @@ public class CategoryItemsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String category(Model model, Locale locale, @RequestParam(value = "type") long type){
+
         //Récupération des infos de la catégorie courrante pour le titre
         model.addAttribute("currentCategory", categoryInfoDAO.findModelByCategoryCodeAndLanguageName(type,locale.getLanguage()));
         //Récupération de l'ArrayList des infos sur les produits de la catégorie courrante
         model.addAttribute("productList", productInfoDAO.findModelListByCategoryAndLanguage(type,locale.getLanguage()));
-        //Création du modèle pour la création de l'orderLine
-        model.addAttribute("orderLine", new OrderLine());
+        //Création du modèle de formQuantity pour la création de l'orderLine
+        model.addAttribute("formQuantity", new FormQuantity());
+
         return "integrated:categoryItems";
     }
 
-    @RequestMapping (value= "/addItemToBasket", method = RequestMethod.POST)
+    /*@RequestMapping (value= "/addItemToBasket", method = RequestMethod.POST)
     public String getFormData(@ModelAttribute(value="orderLine") OrderLine orderLine,@ModelAttribute(value = ToolKit.BASKET) LinkedHashMap<Integer,OrderLine> currentOrder){
         System.out.println("TEST");
         //Calcul et ajout du prix TVA comprise et du numéro de ligne
@@ -51,7 +54,7 @@ public class CategoryItemsController {
         ToolKit.nbLines++;
 
         return "integrated:categoryItems";
-    }
+    }*/
 
 
 }

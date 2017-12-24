@@ -53,5 +53,24 @@ public class CategoryInfoDAO {
         return childCategories;
     }
 
+    public ArrayList<CategoryInfo> findModelMotherList(String languageName){
+        ArrayList<CategoryInfo> categoryInfoMotherList = new ArrayList<>();
+        List<CategoryEntity> motherCategoriesEntities = categoryDAO.findEntityByCategoryParentIsNull();
+        for(CategoryEntity categoryEntity:motherCategoriesEntities){
+            categoryInfoMotherList.add(findModelByCategoryCodeAndLanguageName(categoryEntity.getCode(),languageName));
+        }
+        return categoryInfoMotherList;
+    }
+
+    /*public ArrayList<CategoryInfo> findModelCompleteChildListByCategoryCodeAndLanguageName(long categoryCode, String languageName){
+        ArrayList<CategoryInfo> completeChildCategories = new ArrayList<>();
+
+        ArrayList<CategoryInfo> childCategories = findModelChildListByCategoryCodeAndLanguageName(categoryCode, languageName);
+        for(CategoryInfo categoryInfo:childCategories){
+            completeChildCategories.add(categoryInfo);
+
+        }
+
+    }*/
 
 }

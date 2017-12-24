@@ -26,4 +26,20 @@ public class LanguageEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public long getCode() {
+        return code;
+    }
+
+    public void setCode(long code) {
+        this.code = code;
+    }
+
+    public Collection<ProductInfoEntity> getProductInfos() {
+        return productInfos;
+    }
+
+    public void setProductInfos(Collection<ProductInfoEntity> productInfos) {
+        this.productInfos = productInfos;
+    }
 }

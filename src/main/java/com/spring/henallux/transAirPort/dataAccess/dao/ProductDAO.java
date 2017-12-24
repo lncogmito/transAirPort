@@ -24,4 +24,7 @@ public class ProductDAO {
     public List<ProductEntity> findEntityByCategory(CategoryEntity categoryEntity){
         return productRepository.findByCategory(categoryEntity);
     }
+    public ProductEntity findEntityById(long productId){
+        return productRepository.findOne(productId);
+    }
 }

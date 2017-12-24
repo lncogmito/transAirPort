@@ -11,11 +11,22 @@
         ${title}
     </title>
 
-
-    <spring:url var="localeFr" value="?${pageContext.request.queryString}">
+    <spring:url var="localeFr" value="">
+        <c:if test="${param.type != null}">
+            <spring:param name="type" value="${param.type}"/>
+        </c:if>
+        <c:if test="${param.product != null}">
+            <spring:param name="type" value="${param.product}"/>
+        </c:if>
         <spring:param name="locale" value="fr"/>
     </spring:url>
-    <spring:url var="localeEn" value="?${pageContext.request.queryString}">
+    <spring:url var="localeEn" value="">
+        <c:if test="${param.type != null}">
+            <spring:param name="type" value="${param.type}"/>
+        </c:if>
+        <c:if test="${param.product != null}">
+            <spring:param name="type" value="${param.product}"/>
+        </c:if>
         <spring:param name="locale" value="en"/>
     </spring:url>
 </head>
@@ -26,7 +37,7 @@
             <ul>
                 <li><a href="/transAirPort/normal">Normal page</a></li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="/transAirPort/addCategory"><spring:message code="menuAddCategory"/></a></li>
+                    <li><a href="/transAirPort/addCategory/step1"><spring:message code="menuAddCategory"/></a></li>
                 </sec:authorize>
                 <li><a href="#">lien sous menu 3</a></li>
                 <li><a href="#">lien sous menu 3</a></li>
@@ -49,7 +60,7 @@
     <sec:authorize access="!isAuthenticated()">
         <table id="login">
             <tr>
-                <td><a href="/transAirPort/normal"><button><spring:message code="buttonLogIn"/></button></td>
+                <td><a href="/transAirPort/logged"><button><spring:message code="buttonLogIn"/></button></td>
                 <td><a href="/transAirPort/signIn"><button><spring:message code="buttonSignIn"/></button></a></td>
             </tr>
         </table>
@@ -70,7 +81,6 @@
         <sec:authorize access="isAuthenticated()">
             <p>Connected as ${pageContext.request.userPrincipal.name}</p>
         </sec:authorize>
-        <p>Footer</p>
     </footer>
 </body>
 </html>

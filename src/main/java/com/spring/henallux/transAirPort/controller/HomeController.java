@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -22,8 +23,8 @@ public class HomeController {
     private final MessageSource messageSource;
 
     @ModelAttribute(ToolKit.BASKET)
-    public LinkedHashMap<Integer,OrderLine> getCurrentOrder(){
-        return new LinkedHashMap<>();
+    public HashMap<Integer,OrderLine> initForOrderLines(){
+        return new HashMap<>();
     }
 
     @Autowired

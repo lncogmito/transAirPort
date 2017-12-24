@@ -22,4 +22,44 @@ public class LocalityEntity {
 
     @OneToMany(mappedBy = "locality", fetch = FetchType.LAZY)
     private Collection<AddressEntity> addressEntities;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Collection<AddressEntity> getAddressEntities() {
+        return addressEntities;
+    }
+
+    public void setAddressEntities(Collection<AddressEntity> addressEntities) {
+        this.addressEntities = addressEntities;
+    }
 }

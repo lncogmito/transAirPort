@@ -42,16 +42,6 @@
     color: #19194d;
     background-color: white;
 }
-#password, #username{
-    width: 97%;
-    padding: 5px 2px;
-    border: none;
-    border-radius: 2px;
-}
-#password:focus, #username:focus{
-    background-color: #adadad;
-}
-
 #lang{
     position: fixed;
     top: 3px;
@@ -152,4 +142,13 @@ footer{
 
 .productItem img{
     min-height: 100px;
+}
+
+#basketList{
+    width : 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#basketList td{
+    width:25%;
 }

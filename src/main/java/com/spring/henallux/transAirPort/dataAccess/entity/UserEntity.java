@@ -136,4 +136,28 @@ public class UserEntity implements UserDetails {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    public Collection<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Collection<OrderEntity> orders) {
+        this.orders = orders;
+    }
 }

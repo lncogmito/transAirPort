@@ -30,6 +30,14 @@ public class ProductInfoDAO {
         this.languageDAO = languageDAO;
     }
 
+    public ProductInfo findModelByProductIdAndLanguageName(long productId,String languageName){
+        ProductEntity productEntity = productDAO.findEntityById(productId);
+        LanguageEntity languageEntity = languageDAO.findEntityByName(languageName);
+
+        return findModelByProductAndLanguage(productEntity,languageEntity);
+    }
+
+
     public ProductInfo findModelByProductAndLanguage(ProductEntity productEntity, LanguageEntity languageEntity){
         ProductInfoEntity productInfoEntity = productInfoRepository.findByProductAndLanguage(productEntity,languageEntity);
         return providerConverter.productInfoEntityToProductInfoModel(productInfoEntity);
