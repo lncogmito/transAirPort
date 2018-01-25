@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.Locale;
@@ -45,43 +46,89 @@ public class SignInController {
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public String getFormData(@Valid @ModelAttribute(value = "newUser")UserSignInForm userSignInForm, final BindingResult errors){
-        if(!errors.hasErrors() && userSignInForm.getEmail().equals(userSignInForm.getEmailConfirm()) && userSignInForm.getPassword().equals(userSignInForm.getPasswordConfirm())){
+    public String getFormData(Model model,Locale locale, @Valid @ModelAttribute(value = "newUser")UserSignInForm userSignInForm, final BindingResult errors){
+        model.addAttribute("title", messageSource.getMessage("titleSignIn",null,locale));
+
+        String errorMsg = "";
+        if(!errors.hasErrors()){
             UserEntity newUser = new UserEntity();
-            newUser.setUsername(userSignInForm.getUsername());
-            newUser.setPassword(new BCryptPasswordEncoder().encode(userSignInForm.getPassword()));
-            newUser.setEmail(userSignInForm.getEmail());
-            newUser.setAuthorities("ROLE_USER");
-            newUser.setAccountNonExpired(true);
-            newUser.setAccountNonLocked(true);
-            newUser.setCredentialsNonExpired(true);
-            newUser.setEnabled(true);
 
-            LocalityEntity localityEntity = new LocalityEntity();
-            localityEntity.setCountry(userSignInForm.getCountry());
-            localityEntity.setName(userSignInForm.getLocalityName());
-            localityEntity.setPostalCode(userSignInForm.getPostalCode());
-            AddressEntity addressEntity = new AddressEntity();
-            addressEntity.setStreet(userSignInForm.getStreet());
-            addressEntity.setHouseNumber(userSignInForm.getHouseNumber());
-            if(userSignInForm.getBoxNumber() != null)
-                addressEntity.setBoxNumber(userSignInForm.getBoxNumber());
+            if(userDAO.findEntityByUsername(userSignInForm.getUsername()) != null)
+                if(locale.getLanguage() == "fr")
+                    errorMsg += "Ce pseudo est déjà existant<br/>";
+                else
+                    errorMsg += "This pseudo is already taken<br/>";
+            if(!userSignInForm.getEmail().equals(userSignInForm.getEmailConfirm()))
+                if(locale.getLanguage() == "fr")
+                    errorMsg += "Les emails encodés ne sont pas identiques<br/>";
+                else
+                    errorMsg += "The emails are different<br/>";
+            else{
+                if(userDAO.findEntityByEmail(userSignInForm.getEmail()) != null){
+                    if(locale.getLanguage() == "fr")
+                        errorMsg += "Cet email est déjà existant<br/>";
+                    else
+                        errorMsg += "This email is already taken<br/>";
+                }
+            }
+            if(!userSignInForm.getPassword().equals(userSignInForm.getPasswordConfirm())){
+                if(locale.getLanguage() == "fr")
+                    errorMsg += "Les mots de passe encodés ne sont pas identiques";
+                else
+                    errorMsg += "The passwords are different<br/>";
+            }
 
-            newUser.setAddress(addressEntity);
+            if(errorMsg.equals("")){
+                newUser.setUsername(userSignInForm.getUsername());
+                newUser.setPassword(new BCryptPasswordEncoder().encode(userSignInForm.getPassword()));
+                newUser.setEmail(userSignInForm.getEmail());
+                newUser.setAuthorities("ROLE_USER");
+                newUser.setAccountNonExpired(true);
+                newUser.setAccountNonLocked(true);
+                newUser.setCredentialsNonExpired(true);
+                newUser.setEnabled(true);
 
-            addressDAO.saveLocality(localityEntity);
+                LocalityEntity localityEntity = addressDAO.findOneByNameAndPostalCode(userSignInForm.getLocalityName(),userSignInForm.getPostalCode());
+                if(localityEntity == null){
+                    localityEntity = new LocalityEntity();
+                    localityEntity.setCountry(userSignInForm.getCountry());
+                    localityEntity.setName(userSignInForm.getLocalityName());
+                    localityEntity.setPostalCode(userSignInForm.getPostalCode());
+                    addressDAO.saveLocality(localityEntity);
 
-            addressEntity.setLocality(addressDAO.findOneByNameAndPostalCode(userSignInForm.getLocalityName(),userSignInForm.getPostalCode()));
+                    //charger ce qu'il y a en BD pour avoir l'id avec
+                    localityEntity = addressDAO.findOneByNameAndPostalCode(userSignInForm.getLocalityName(),userSignInForm.getPostalCode());
+                }
 
-            addressDAO.saveAddress(addressEntity);
-            if(userDAO.save(newUser))
-                return "redirect:/home";
-            else
-                return "integrated:signIn";
+                AddressEntity addressEntity;
+                if(userSignInForm.getBoxNumber() == null)
+                     addressEntity = addressDAO.findOneByStreetAndHouseNumber(userSignInForm.getStreet(), userSignInForm.getBoxNumber());
+                else
+                    addressEntity = addressDAO.findOneByStreetAndHouseNumberAndBoxNumber(userSignInForm.getStreet(), userSignInForm.getHouseNumber(), userSignInForm.getBoxNumber());
+
+                if(addressEntity == null){
+                    addressEntity = new AddressEntity();
+                    addressEntity.setStreet(userSignInForm.getStreet());
+                    addressEntity.setHouseNumber(userSignInForm.getHouseNumber());
+                    if(userSignInForm.getBoxNumber() != null) {
+                        addressEntity.setBoxNumber(userSignInForm.getBoxNumber());
+                    }
+                }
+
+                addressEntity.setLocality(localityEntity);
+                addressDAO.saveAddress(addressEntity);
+
+                newUser.setAddress(addressEntity);
+
+
+                if(userDAO.save(newUser))
+                    return "redirect:/home";
+            }
+
         }
-        else{
-            return "integrated:signIn";
-        }
+
+        model.addAttribute("msg", errorMsg);
+        return "integrated:signIn";
 
 
     }

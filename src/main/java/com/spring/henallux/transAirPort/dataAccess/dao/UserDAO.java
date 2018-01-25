@@ -34,5 +34,9 @@ public class UserDAO {
         return userRepository.findByUsername(username);
     }
 
+    public UserEntity findEntityByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
 
 }

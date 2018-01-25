@@ -8,4 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface AddressRepository extends JpaRepository<AddressEntity, Long> {
+    public AddressEntity findOneByStreetAndHouseNumber(String street, String houseNumber);
+    public AddressEntity findOneByStreetAndHouseNumberAndBoxNumber(String street, String houseNumber, String boxNumber);
 }

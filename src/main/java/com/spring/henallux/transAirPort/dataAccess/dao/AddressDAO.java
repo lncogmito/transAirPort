@@ -34,4 +34,10 @@ public class AddressDAO {
     public LocalityEntity findOneByNameAndPostalCode(String name, int postalCode){
         return localityRepository.findOneByNameAndPostalCode(name, postalCode);
     }
+    public AddressEntity findOneByStreetAndHouseNumber(String street, String houseNumber){
+        return addressRepository.findOneByStreetAndHouseNumber(street,houseNumber);
+    }
+    public AddressEntity findOneByStreetAndHouseNumberAndBoxNumber(String street,String houseNumber, String boxNumber){
+        return addressRepository.findOneByStreetAndHouseNumberAndBoxNumber(street,houseNumber,boxNumber);
+    }
 }

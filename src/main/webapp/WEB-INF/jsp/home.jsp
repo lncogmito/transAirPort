@@ -1,3 +1,3 @@
 <%@ include file="./include/importTags.jsp"%>
 
-<h1>Bienvenue sur TransAirPort</h1>
+<h1><spring:message code="welcomeMsg"/></h1>

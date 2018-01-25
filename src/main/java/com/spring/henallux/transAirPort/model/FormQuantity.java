@@ -6,15 +6,15 @@ import javax.validation.constraints.NotNull;
 public class FormQuantity {
     @NotNull
     @Min(value = 1)
-    private int quantity;
+    private Integer quantity;
 
     public FormQuantity(){}
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

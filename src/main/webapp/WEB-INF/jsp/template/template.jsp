@@ -6,7 +6,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link type="text/css" href="<spring:url value="/css/transAirPortStylesheet.css"/>" rel="stylesheet">
-    <link type="text/css" href="<spring:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
     <title>
         ${title}
     </title>
@@ -16,7 +15,7 @@
             <spring:param name="type" value="${param.type}"/>
         </c:if>
         <c:if test="${param.product != null}">
-            <spring:param name="type" value="${param.product}"/>
+            <spring:param name="product" value="${param.product}"/>
         </c:if>
         <spring:param name="locale" value="fr"/>
     </spring:url>
@@ -25,7 +24,7 @@
             <spring:param name="type" value="${param.type}"/>
         </c:if>
         <c:if test="${param.product != null}">
-            <spring:param name="type" value="${param.product}"/>
+            <spring:param name="product" value="${param.product}"/>
         </c:if>
         <spring:param name="locale" value="en"/>
     </spring:url>
@@ -33,16 +32,7 @@
 <body>
     <ul id="menu">
         <li><a href="/transAirPort/home">TransAirPort</a></li>
-        <li><a href="#">Menu</a>
-            <ul>
-                <li><a href="/transAirPort/normal">Normal page</a></li>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="/transAirPort/addCategory/step1"><spring:message code="menuAddCategory"/></a></li>
-                </sec:authorize>
-                <li><a href="#">lien sous menu 3</a></li>
-                <li><a href="#">lien sous menu 3</a></li>
-            </ul>
-        </li><li><a href="#"><spring:message code="menuCategories"/></a>
+        <li><a href="#"><spring:message code="menuCategories"/></a>
             <ul>
                 <c:forEach var="category" items="${categories}">
                     <li><a href="/transAirPort/category?type=${category.getCategory().getCode()}">${category.getName()}</a></li>
@@ -73,6 +63,7 @@
         </table>
     </sec:authorize>
 
+    <p class="msg">${msg}</p>
 
     <div id="mainPart">
         <tiles:insertAttribute name="main-content"/>

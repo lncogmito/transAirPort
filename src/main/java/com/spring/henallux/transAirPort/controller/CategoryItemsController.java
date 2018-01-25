@@ -6,6 +6,7 @@ import com.spring.henallux.transAirPort.model.FormQuantity;
 import com.spring.henallux.transAirPort.model.Order;
 import com.spring.henallux.transAirPort.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +20,20 @@ import java.util.Locale;
 @SessionAttributes({ToolKit.BASKET})
 public class CategoryItemsController {
 
+    private final MessageSource messageSource;
     private CategoryInfoDAO categoryInfoDAO;
     private ProductInfoDAO productInfoDAO;
 
     @Autowired
-    public CategoryItemsController(CategoryInfoDAO categoryInfoDAO,ProductInfoDAO productInfoDAO){
+    public CategoryItemsController( MessageSource messageSource, CategoryInfoDAO categoryInfoDAO,ProductInfoDAO productInfoDAO){
         this.categoryInfoDAO = categoryInfoDAO;
         this.productInfoDAO = productInfoDAO;
+        this.messageSource = messageSource;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String category(Model model, Locale locale, @RequestParam(value = "type") long type){
+        model.addAttribute("title", messageSource.getMessage("titleCategory",null,locale));
 
         //Récupération des infos de la catégorie courrante pour le titre
         model.addAttribute("currentCategory", categoryInfoDAO.findModelByCategoryCodeAndLanguageName(type,locale.getLanguage()));

@@ -11,6 +11,12 @@
 #a6a6a6 = gris
 #8c8c8c = +foncé
 */
+body{
+    font-family:CaviarDreams;
+}
+button{
+    font-family:CaviarDreams;
+}
 
 #login{
     position:fixed;
@@ -57,7 +63,7 @@ footer{
     height: 100px;
     width: 100%;
     background-color: #f5f5f5;
-    border-top: 1px solid #003399;
+    border-top: 1px solid #101010;
     bottom: 0px;
 }
 
@@ -134,14 +140,31 @@ footer{
     margin-right: auto;
 }
 .productItem{
-    max-width:300px;
-    min-width: 200px;
+    width: 25%;
     height: 200px;
-    border: 1px solid black;
 }
 
-.productItem img{
+td img{
     min-height: 100px;
+    width:100%;
+}
+
+.productItemName{
+    width:100%;
+    text-align:center;
+}
+.productItemQuant{
+    width: 75%;
+}
+.productItemQuant input{
+    width:100%;
+}
+.productItemBut{
+    width: 25%;
+}
+
+.productItemTable{
+    width:100%;
 }
 
 #basketList{
@@ -152,3 +175,64 @@ footer{
 #basketList td{
     width:25%;
 }
+#signInTable{
+    margin-left:auto;
+    margin-right:auto;
+}
+.msg{
+    left:40%;
+    position: absolute;
+    top: 70px;
+    background-color: #5e5e5e;
+    color: white;
+}
+
+h1{
+    color:#101010;
+    margin-left: 40px;
+    font-family:CaviarDreams;
+}
+.errorField{
+    color:darkred;
+}
+
+#productDetailsTable{
+    width: 80%;
+    margin-left:auto;
+    margin-right: auto;
+}
+.productDetailsName{
+    font-size: 40px;
+}
+.productDetailsPrice{
+    font-size: 35px;
+    color: darkred;
+    text-align: right;
+}
+.productDetailsImg{
+    max-width: 500px;
+}
+.productDetailsQuantity{
+    vertical-align: bottom;
+    max-width: 150px;
+    text-align: right;
+}
+.productDetailsDesc{
+
+}
+.productDetailsBut{
+    text-align: right;
+}
+.emptyCat{
+    font-size: 25px;
+    font-style: italic;
+    color: darkred;
+}
+.basketProduct td{
+    text-align: center;
+}
+#basketList td:last-child{
+    text-align: right;
+}
+
+

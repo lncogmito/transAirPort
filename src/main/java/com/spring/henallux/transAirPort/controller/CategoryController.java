@@ -31,7 +31,7 @@ public class CategoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String category(Model model, Locale locale, @RequestParam(value = "type") long type){
-        model.addAttribute("title", messageSource.getMessage("titleHome",null,locale));
+        model.addAttribute("title", messageSource.getMessage("titleCategory",null,locale));
 
         ArrayList<CategoryInfo> childCategories = categoryInfoDAO.findModelChildListByCategoryCodeAndLanguageName(type,locale.getLanguage());
         if(childCategories.isEmpty())

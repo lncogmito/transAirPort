@@ -36,14 +36,13 @@ public class UserSignInForm {
     @NotEmpty
     private String houseNumber;
 
-
     private String boxNumber;
 
     @NotEmpty
     private String localityName;
 
     @NotNull
-    @Min(value = 0)
+    @Min(value = 1000)
     @Max(value = 9999)
     private Integer postalCode;
 

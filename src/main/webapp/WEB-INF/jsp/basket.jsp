@@ -8,29 +8,42 @@
                 <th><spring:message code="basketHeaderTableQuantity"/></th>
                 <th><spring:message code="basketHeaderTableUnitPrice"/></th>
             </tr>
+
             <%
                 int iItem = 0;
             %>
             <c:forEach var="orderLine" items="${orderLines}">
                 <tr class="basketProduct">
-                    <td>${productList.get(iItem).getName()}</td><!-- Charger une arraylist d'infos en // -->
-                    <td><img class="img-responsive" src="<spring:url value='/images/${orderLine.getProduct().getId()}.jpg'/>"/></td>
+                    <td>${productList.get(iItem).getName()}</td>
+                    <td><a href="/transAirPort/productDetails?product=${orderLine.getProduct().getId()}"><img src="<spring:url value='/images/${orderLine.getProduct().getId()}.jpg'/>"/></a></td>
                     <td>${orderLine.getQuantity()}</td>
                     <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${orderLine.getPrice()}" /></td>
-                    <!-- ADD bouton supprimer de la list! -->
+                    <td><a href="/transAirPort/delete?productId=${orderLine.getProduct().getId()}"><spring:message code="basketDelete"/></a></td>
                 </tr>
                 <%
                     iItem++;
                 %>
             </c:forEach>
-            <tr><td colspan="3"><spring:message code="basketTableTotalCost"/></td><td><fmt:formatNumber type="number" maxFractionDigits="2" value="${totalCost}" /> euros</td></tr>
+
+
+            <tr class="basketPrice">
+                <td colspan="3"><spring:message code="basketTableTotalCost"/></td>
+                <td colspan="2"><fmt:formatNumber type="number" maxFractionDigits="2" value="${totalCost}" /> euros</td>
+            </tr>
+
             <c:if test="${totalCost != totalCostReduc}">
-                <tr><td colspan="3"><spring:message code="basketTableTotalCostReduc"/></td><td><fmt:formatNumber type="number" maxFractionDigits="2" value="${totalCostReduc}" /> euros</td></tr>
+                <tr class="basketPrice">
+                    <td colspan="3"><spring:message code="basketTableTotalCostReduc"/></td>
+                    <td colspan="2"><fmt:formatNumber type="number" maxFractionDigits="2" value="${totalCostReduc}" /> euros</td>
+                </tr>
             </c:if>
-            <tr><td colspan="4"><a href="/transAirPort/validateCommand"><button><spring:message code="buttonValidateCommand"/></button></a></td></tr>
+            <tr>
+                <td colspan="5"><a href="/transAirPort/validateCommand"><button><spring:message code="buttonValidateCommand"/></button></a></td>
+            </tr>
+
         </table>
     </c:when>
     <c:otherwise>
-        <p><spring:message code="emptyBasket"/></p>
+        <p class="emptyCat"><spring:message code="emptyBasket"/></p>
     </c:otherwise>
 </c:choose>

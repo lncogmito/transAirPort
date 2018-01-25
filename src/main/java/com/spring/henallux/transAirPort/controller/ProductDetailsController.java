@@ -12,10 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/productDetails")
@@ -44,22 +41,37 @@ public class ProductDetailsController {
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     public String getFormProductItem(Model model, Locale locale,
-                                     @Valid @ModelAttribute(value="formQuantity") FormQuantity formQuantity,
+                                     @ModelAttribute(value="formQuantity") FormQuantity formQuantity,
                                      @ModelAttribute(value = ToolKit.BASKET) HashMap<Integer,OrderLine> hashMap,
-                                     @RequestParam(value = "product") long code,
-                                     final BindingResult errors){
-        OrderLine orderLine = new OrderLine();
-        ProductInfo productInfo = productInfoDAO.findModelByProductIdAndLanguageName(code,locale.getLanguage());
-        double price = productInfo.getProduct().getPrice()*(1+productInfo.getProduct().getVat()/100);
-        orderLine.setQuantity(formQuantity.getQuantity());
-        orderLine.setProduct(productInfo.getProduct());
-        orderLine.setPrice(price);
-        orderLine.setLineNumber(ToolKit.nbLines);
+                                     @RequestParam(value = "product") long code){
+        if(formQuantity.getQuantity() > 0) {
+            if (!hashMap.isEmpty()) {
+                Set<Map.Entry<Integer, OrderLine>> setHashMap = hashMap.entrySet();
+                Iterator<Map.Entry<Integer, OrderLine>> it = setHashMap.iterator();
+                Map.Entry<Integer, OrderLine> entry = it.next();
+                while (it.hasNext() && entry.getValue().getProduct().getId() != code) {
+                    entry = it.next();
+                }
+                if (entry.getValue().getProduct().getId() == code) {
+                    entry.getValue().setQuantity(entry.getValue().getQuantity() + formQuantity.getQuantity());
+                    return "redirect:/productDetails?product=" + code;
+                }
+            }
+            OrderLine orderLine = new OrderLine();
+            ProductInfo productInfo = productInfoDAO.findModelByProductIdAndLanguageName(code, locale.getLanguage());
+            double price = productInfo.getProduct().getPrice() * (1 + productInfo.getProduct().getVat() / 100);
+            orderLine.setQuantity(formQuantity.getQuantity());
+            orderLine.setProduct(productInfo.getProduct());
+            orderLine.setPrice(price);
+            orderLine.setLineNumber(ToolKit.nbLines);
 
-        hashMap.put(ToolKit.nbLines,orderLine);
+            hashMap.put(ToolKit.nbLines, orderLine);
 
-        ToolKit.nbLines++;
+            ToolKit.nbLines++;
 
-        return "redirect:/productDetails?product="+productInfo.getProduct().getId();
+            //model.addAttribute("msg", formQuantity.getQuantity() + " " + productInfo.getName() + " ajouté au panier");
+        }
+
+        return "redirect:/productDetails?product="+code;
     }
 }

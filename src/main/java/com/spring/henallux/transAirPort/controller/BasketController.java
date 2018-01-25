@@ -11,9 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/basket")
@@ -42,17 +40,41 @@ public class BasketController {
         model.addAttribute("orderLines", hashMap.values());
         model.addAttribute("totalCost",totalCost);
 
-        totalCost = costReducItemQuantity(totalCost, hashMap.values().size());
-        model.addAttribute("totalCostReduc",totalCost);
-        ToolKit.totalCostAllReducInclusive = totalCost;
+
+        if(!hashMap.isEmpty()){
+            Set<Map.Entry<Integer,OrderLine>> setHashMap = hashMap.entrySet();
+            Iterator<Map.Entry<Integer,OrderLine>> it = setHashMap.iterator();
+            Map.Entry<Integer,OrderLine> entry = it.next();
+            int quantityItem = entry.getValue().getQuantity();
+            long categoryCode = entry.getValue().getProduct().getCategory().getCode();
+            boolean reducCat = false;
+            while(it.hasNext()){
+                entry = it.next();
+                quantityItem += entry.getValue().getQuantity();
+                if(categoryCode != entry.getValue().getProduct().getCategory().getCode())
+                    reducCat = true;
+            }
+            if(reducCat)
+                totalCost *= 0.9;
+            totalCost = costReducItemQuantity(totalCost, quantityItem);
+            totalCost = costReducElemQuantity(totalCost, hashMap.values().size());
+
+            model.addAttribute("totalCostReduc",totalCost);
+            ToolKit.totalCostAllReducInclusive = totalCost;
+        }
 
         return "integrated:basket";
     }
 
-    private double costReducItemQuantity(double totalCost, int sizeBasket){
-        if(sizeBasket>=3){
+    private double costReducElemQuantity(double totalCost, int sizeBasket){
+        if(sizeBasket>=3)
             return (totalCost *= 0.9);
-        }
+        else
+            return totalCost;
+    }
+    private double costReducItemQuantity(double totalCost, int quantityElem){
+        if(quantityElem >= 3)
+            return (totalCost *= 0.9);
         else
             return totalCost;
     }

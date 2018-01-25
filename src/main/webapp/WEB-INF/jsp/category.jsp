@@ -1,6 +1,6 @@
 <%@ include file="./include/importTags.jsp"%>
 
-<h1>${currentCategory.getName()}</h1>
+<h1 class="titleCat">${currentCategory.getName()}</h1>
 
 <ul id="subCatList">
     <c:forEach var="category" items="${childCategories}">

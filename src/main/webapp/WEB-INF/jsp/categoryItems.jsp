@@ -1,7 +1,7 @@
 <%@ include file="./include/importTags.jsp"%>
 
-<h1>${currentCategory.getName()}</h1>
-
+<h1 class="titleCat">${currentCategory.getName()}</h1>
+<p><spring:message code="categoryInfoAdd"/></p>
 <table id="productList">
     <tr class="productLine">
         <%
@@ -14,19 +14,19 @@
                            action="/transAirPort/productDetails/send?product=${productItem.getProduct().getId()}"
                            modelAttribute="formQuantity">
                     <table class="productItemTable">
-                        <tr><td colspan="2">
+                        <tr><td colspan="2" class="productItemName">
                                 ${productItem.getName()}
                         </td></tr>
-                        <tr><td colspan="2">
+                        <tr><td colspan="2" class="productItemImg">
                             <a href="/transAirPort/productDetails?product=${productItem.getProduct().getId()}">
-                                <img class="img-responsive" src="<spring:url value='/images/${productItem.getProduct().getId()}.jpg'/>"/>
+                                <img src="<spring:url value='/images/${productItem.getProduct().getId()}.jpg'/>"/>
                             </a>
                         </td></tr>
                         <tr>
-                            <td>
+                            <td class="productItemQuant">
                                 <form:input path="quantity" type="number"/>
                             </td>
-                            <td>
+                            <td class="productItemBut">
                                 <form:button class="btn btn-secondary btn-sm"><spring:message code="buttonValidate"/></form:button>
                             </td>
                         </tr>
@@ -45,7 +45,7 @@
 
         </c:forEach>
         <c:if test="${productList.isEmpty()}">
-            <spring:message code="emptyCategory"/>
+            <p class="emptyCat"><spring:message code="emptyCategory"/></p>
         </c:if>
     </tr>
 </table>
